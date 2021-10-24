@@ -1,6 +1,8 @@
 int num_orbs = 1000;
 Orb[] orbs = new Orb[num_orbs];
+int hole_size;
 void setup() {
+   hole_size = 15;
    // size(512, 512);
    size(1080, 1080);
    background(255);
@@ -10,9 +12,13 @@ void setup() {
       orb.display();
       orbs[i] = orb;
    }
+   fill(0);
+   ellipse(width/2, height/2, prop(hole_size), prop(hole_size));
 }
 void draw() {
    background(255);
+   fill(0);
+   ellipse(width/2, height/2, prop(hole_size), prop(hole_size));
    for (int i = 0; i < num_orbs; i++){
       orbs[i].move();
       orbs[i].display();
@@ -33,7 +39,7 @@ class Orb {
    float ys;
    float startxs;
    float startys;
-   float radius = prop(pythagorean(width/2, height/2));
+   float radius = pythagorean(width/2, height/2); // edit if needed
    int count = 500;
 
    public Orb(float theta) {
