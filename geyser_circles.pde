@@ -1,7 +1,8 @@
 int num_orbs = 1000;
 Orb[] orbs = new Orb[num_orbs];
 void setup() {
-   size(512, 512);
+   // size(512, 512);
+   size(1080, 1080);
    background(255);
    for (int i = 0; i < num_orbs; i++){
       float theta = 2*PI*i/num_orbs;
@@ -32,18 +33,18 @@ class Orb {
    float ys;
    float startxs;
    float startys;
-   float radius = pythagorean(width/2, height/2);
+   float radius = prop(pythagorean(width/2, height/2));
    int count = 500;
 
    public Orb(float theta) {
-      size = prop(1) * prop(random(1, 10));
-      radius += size / (1 / prop(random(1, 50)));
+      size = prop(1 * random(1, 10));
+      radius += size / prop(1 / random(1, 50));
       x = width/2 + (radius * cos(theta));
       y = height/2 + (radius * sin(theta));
       startx = x;
       starty = y;
-      xs = x - width/2;
-      ys = y - height/2;
+      xs = prop(x - width/2);
+      ys = prop(y - height/2);
       startxs = xs;
       startys = ys;
       float random_speed = random(100, 300);
@@ -77,7 +78,7 @@ class Orb {
 }
 
 float prop(float value){
-   return value * 512 / width;
+   return value * width / 512;
 }
 
 float distance(float x1, float y1, float x2, float y2){
